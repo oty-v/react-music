@@ -1,38 +1,259 @@
-.App {
-  text-align: center;
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: rgba(0,0,0,0);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+::-webkit-scrollbar
+{
+	width: .5rem;
+	background-color: rgba(0,0,0,0);
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+::-webkit-scrollbar-thumb
+{
+  background-color: rgba(23, 162, 184, .0);
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+::-webkit-scrollbar-thumb:hover
+{
+  background-color: #17a2b8;
+}
+.signIn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+img {
+  width: 12rem;
+  height: 12rem;
+  object-fit: cover;
+}
+body {
+  background-color: #000 !important;
+  overflow: hidden;
+  color: #fff !important;
+}
+.logo {
+  width: 3rem;
+  height: 3rem;
+}
+.react-jinke-music-player-main .music-player-panel .panel-content .rc-slider-handle,
+.react-jinke-music-player-main .music-player-panel .panel-content .rc-slider-track,
+.react-jinke-music-player-mobile-progress .rc-slider-handle,
+.react-jinke-music-player-mobile-progress .rc-slider-track {
+  background-color: #17a2b8 !important;
+}
+.audio-lists-panel-content .audio-item.playing,
+.audio-lists-panel-content .audio-item.playing svg,
+.react-jinke-music-player-main svg:active,
+.react-jinke-music-player-main svg:hover,
+.loading-icon svg {
+  color: #17a2b8 !important;
+}
+.progress-bar {
+  background-color: rgba(0,0,0,0) !important;
+}
+.section-list {
+  height: 90vh;
+  overflow-y: scroll;
+}
+.card-list {
+  margin: 6rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.p-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: calc(12rem + 2px);
+  word-wrap: break-word;
+  background-clip: border-box;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  margin: 2rem;
 }
-
-.App-link {
-  color: #61dafb;
+.p-img {
+  width: auto;
+  height: auto;
+  fill: #17a2b8;
+  margin: 2rem;
 }
+.p-card:hover .p-img {
+  fill: #fff;
+}
+.p-title {
+  margin: 0;
+}
+.adder-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  overflow: hidden;
+  outline: 0;
+  background: rgba(0,0,0,.9);
+}
+.modal-dark {
+  background-color: #000 !important;
+}
+.plist-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  outline: 0;
+  background: rgba(0,0,0,.95);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-clip: padding-box;
+  outline: 0;
+}
+.btn-back {
+  background-color: rgba(0,0,0,0);
+  border: 2px solid #17a2b8;
+  border-radius: 100%;
+  font-size: 1.5rem;
+  padding-bottom: .5rem;
+  line-height: 1.5rem;
+  color: #17a2b8;
+}
+.btn-back:hover {
+  background-color:#17a2b8;
+  color: #fff;
+}
+.plist-modal .modal-body {
+  overflow-y: scroll;
+  padding-right: calc(16px - 0.5rem);
+}
+.plist-info {
+  display: flex;
+}
+.plist-btn-play {
+  color: #17a2b8;
+  background-color: rgba(0,0,0,0);
+  border: 2px solid #17a2b8;
+  border-radius: 100%;
+  padding: .5rem .563rem;
+  margin: 1rem 0;
+}
+.plist-btn-edit {
+  color: #17a2b8;
+  background-color: rgba(0,0,0,0);
+  border: 2px solid #17a2b8;
+  border-radius: 5px;
+  padding: .5rem .563rem;
+  margin: 1rem 1rem;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+}
+.plist-btn-play:hover,.plist-btn-edit:hover {
+  color: #fff;
+  background-color: #17a2b8;
+}
+.search-form {
+  margin: 2rem;
+  display: flex;
+}
+.search-input {
+  border: 2px solid rgba(0,0,0,0);
+  flex-grow: 1;
+  background-color: rgba(0,0,0,0);
+  border-bottom: 2px solid #17a2b8;
+  padding: .25rem 1.5rem;
+  width: auto;
+  font-size: 1.25rem;
+  color: #fff;
+  transition: all .25s ease-in;
+}
+.search-input:focus {
+  outline: none;
+  border: 2px solid #17a2b8;
+  border-radius: 1rem;
+  transition: all .25s ease-out;
+}
+.plist-table {
+  margin: 2rem 2rem 4rem 2rem;
+}
+tr:first-child th {
+  border:none;
+}
+th, td {
+  color: #fff;
+  border-color: #17a2b8 !important;
+  vertical-align: middle !important;
+}
+th:last-child, td:last-child {
+  text-align: right;
+}
+.btn-plist-select {
+  color: #17a2b8;
+  border-color: #17a2b8;
+}
+tbody tr:hover, .btn-plist-select:hover {
+  color: #fff;
+  background-color: rgba(23, 162, 184, .25);
+}
+.song-play-btn {
+  position: absolute;
+  margin: 0 -1rem;
+  opacity: 0;
+  color: #17a2b8;
+}
+tbody tr:hover th span{
+  opacity: 0;
+}
+tbody tr:hover .song-play-btn{
+  opacity: 1;
+}
+.song-play-btn:hover {
+  color: #fff;
+}
+.song-img {
+  width: 5.5rem;
+}
+.song-img img{
+  width: 100%;
+  height: 4rem;
+}
+.song-del-btn {
+  color: #17a2b8;
+  border: 0;
+  background-color: rgba(0,0,0,0);
+  border-radius: 2px;
+}
+.song-del-btn:hover {
+  color: #fff;
+  cursor: pointer;
+}
+.react-jinke-music-player-main .music-player-panel .panel-content .img-rotate {
+  animation: none !important;
+}
+.react-jinke-music-player-main .music-player-panel .panel-content .img-content {
+  border-radius: 0 !important;
+  background-position: center;
+  background-size: cover !important;
+}
+.react-jinke-music-player-mobile-cover {
+  border-radius: 0 !important;
+}
+.react-jinke-music-player-mobile-cover .cover {
+  height: 100%;
+  animation: none !important;
+  background-position: center;
+  background-size: cover !important;
+}
+.react-jinke-music-player .music-player-controller {
+  background-position: center;
+  background-size: cover !important;
+  color: #17a2b8 !important;
+}
+.react-jinke-music-player .music-player-controller .music-player-controller-setting {
+  background-color: rgba(23, 162, 184, .25) !important;
 }
