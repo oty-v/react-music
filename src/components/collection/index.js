@@ -20,10 +20,10 @@ function Collection({auth,firestore,getSongData}) {
   )
   return (
     <div className="card-list">
-      <div className="p-card btn-plist-select" onClick={modalTogle}>
+      <div className="p-card btn-plist-select" onClick={modalTogle} title="Create a new playlist">
         <AddBtn className="p-img"/>
-        <div class="card-body">
-          <h5 class="p-title">ADD PLAYLIST</h5>
+        <div className="card-body">
+          <h5 className="p-title">ADD PLAYLIST</h5>
         </div>
       </div>
       {messages && messages.map(msg => <UserPlaylist key={msg.id} message={msg} auth={auth} getSongData={getSongData}/>)}

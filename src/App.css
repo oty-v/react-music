@@ -20,8 +20,10 @@
 }
 .signIn {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   height: 60vh;
 }
 img {
@@ -222,6 +224,12 @@ tbody tr:hover .song-play-btn{
   width: 100%;
   height: 4rem;
 }
+.cont-song-title {
+  overflow: hidden;
+}
+.song-bold-title {
+  white-space: nowrap;
+}
 .song-del-btn {
   color: #17a2b8;
   border: 0;
@@ -256,4 +264,19 @@ tbody tr:hover .song-play-btn{
 }
 .react-jinke-music-player .music-player-controller .music-player-controller-setting {
   background-color: rgba(23, 162, 184, .25) !important;
+}
+@media screen and (orientation:portrait) {
+  .modal-body {
+    overflow-x: hidden;
+  }
+  .plist-table {
+    margin: 2rem 0 0 -.75rem;
+    width: 100vw;
+  }
+  .song-img {
+    padding: 0 !important;
+  }
+  .cont-song-title {
+    width: 40vw;
+  }
 }

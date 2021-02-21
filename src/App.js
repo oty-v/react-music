@@ -11,7 +11,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import Collection from './components/collection';
 
 import ReactPlayer from "react-jinke-music-player";
-import Locale from 'react-jinke-music-player/lib/config/locale'
 import "react-jinke-music-player/assets/index.css";
 
 firebase.initializeApp({
@@ -40,20 +39,24 @@ function App() {
       unmount: true
     });
     try {
-      for(let i=0; i<songs.length; i++){
-        const songUrl = await axios(`https://express-music-api.herokuapp.com/youtube?URL=${songs[i].id}`);
-        setPlayData([
-          {
-            musicSrc: songUrl.data,
-            name: songs[i].title,
-            cover: songs[i].imgUrl,
-            singer: songs[i].author,
-          }
-        ]);
-        setRemoveSongs({
-          playsong: true,
-          unmount: false
-        });
+      for(const i of songs){
+        const songUrl = await axios(`https://express-music-api.herokuapp.com/youtube?URL=${i.id}`);
+        if(!songUrl.data){
+          alert(`Video "${i.title}" is blocked on YouTube and will not play!`);
+        }else{
+          setPlayData([
+            {
+              musicSrc: songUrl.data,
+              name: i.title,
+              cover: i.imgUrl,
+              singer: i.author,
+            }
+          ]);
+          setRemoveSongs({
+            playsong: true,
+            unmount: false
+          });
+        }
       }
     } catch (e) {
       alert("Sorry Something Want Wrong Please Try Again");
@@ -72,8 +75,8 @@ function App() {
         {user ? <Collection auth={auth} firestore={firestore} getSongData={getSongData}/> : <SignIn />}
       </section>
       {removeSongs.playsong && (
-            <ReactPlayer 
-              locale={Locale.zh_CN}
+            <ReactPlayer
+              locale={'en_US'}
               showMediaSession
               audioLists={playData}
               theme='dark'
@@ -99,6 +102,8 @@ function SignIn() {
 
   return (
     <div className="signIn">
+      <h1>Unity Music</h1>
+      <p>This is the place where you can combine playlists from Spotify and YouTube</p>
       <button className="btn btn-outline-info" onClick={signInWithGoogle}>Sign in with Google</button>
     </div>
   )

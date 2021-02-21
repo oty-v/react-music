@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import firebase from 'firebase/app';
-import { getSearchData } from "./../api/youtube";
+import { getPlaylistData, getSearchData } from "./../api/youtube";
 import {ReactComponent as PlayBtn} from "./../../assets/play.svg";
 import Editor from "./../editor/index"
 
@@ -11,19 +11,37 @@ function Playlist({message,imgSrc,getSongData}) {
     const { text, songs } = message;
     const sendMessage = async (e) => {
         e.preventDefault();
-        const data = await getSearchData(formValue);
-        const songData = {
-            author:data.channel.title.replace(/\s-\sTopic/g, ''),
-            id:data.id,
-            title:data.title,
-            url:data.shortURL,
-            seconds:data.durationSeconds,
-            imgUrl:data.maxRes.url
+        if(formValue.includes("list=")){
+            const data = await getPlaylistData(formValue);
+            for(let i=0; i<data.length; i++){
+                const songData = {
+                    author:data[i].channel.title.replace(/\s-\sTopic/g, ''),
+                    id:data[i].id,
+                    title:data[i].title,
+                    url:data[i].shortURL,
+                    seconds:data[i].durationSeconds,
+                    imgUrl:data[i].maxRes.url
+                }
+                await messagesRef.doc(message.id).update({
+                    songs: firebase.firestore.FieldValue.arrayUnion(songData)
+                });
+            }
+            setFormValue('');
+        }else{
+            const data = await getSearchData(formValue);
+            const songData = {
+                author:data.channel.title.replace(/\s-\sTopic/g, ''),
+                id:data.id,
+                title:data.title,
+                url:data.shortURL,
+                seconds:data.durationSeconds,
+                imgUrl:data.maxRes.url
+            }
+            await messagesRef.doc(message.id).update({
+                songs: firebase.firestore.FieldValue.arrayUnion(songData)
+            });
+            setFormValue('');
         }
-        await messagesRef.doc(message.id).update({
-            songs: firebase.firestore.FieldValue.arrayUnion(songData)
-        });
-        setFormValue('');
     }
     const sendRemove = async (props) => {
         const messagesRef = firebase.firestore().collection('messages');
@@ -67,10 +85,10 @@ function Playlist({message,imgSrc,getSongData}) {
                         <h1 className="card-title">{text}</h1>
                         <small>{songs?songs.length:0} tracks {songs&&plistTime()}</small>
                         <div className="plist-btn-block">
-                            <button className="plist-btn-play" onClick={() => getSongData(songs)}>
+                            <button className="plist-btn-play" title={`Listen ${text}`} onClick={() => getSongData(songs)}>
                                 <PlayBtn/>
                             </button>
-                            <button className="plist-btn-edit" onClick={modalTogle}>EDIT</button>
+                            <button className="plist-btn-edit" title={`Edit ${text}`} onClick={modalTogle}>EDIT</button>
                         </div>
                     </div>
                 </div>
@@ -103,12 +121,12 @@ function Playlist({message,imgSrc,getSongData}) {
                                 >
                                     <th scope="row">
                                         <span>{i+1}</span>
-                                        <PlayBtn className="song-play-btn" onClick={() => allSongs(i)}/>
+                                        <PlayBtn className="song-play-btn" title={`Listen ${props.title}`} onClick={() => allSongs(i)}/>
                                     </th>
                                     <td className="song-img"><img src={props.imgUrl} alt={props.id}></img></td>
-                                    <td className="table-item-name"><div><b>{props.title}</b></div><small style={{color: "#17a2b8"}}>{props.author}</small></td>
+                                    <td className="table-item-name"><div className="cont-song-title"><b className="song-bold-title">{props.title}</b></div><small style={{color: "#17a2b8"}}>{props.author}</small></td>
                                     <td>
-                                        <button className="song-del-btn" onClick={()=>sendRemove(props.id)}>DELETE</button>
+                                        <button className="song-del-btn" title={`Delete ${props.title}`} onClick={()=>sendRemove(props.id)}>DELETE</button>
                                     </td>
                                     <td>{time(props.seconds)}</td>
                                 </tr>

@@ -8,21 +8,21 @@ function UserPlaylist({message,auth,getSongData}) {
     if(uid !== auth.currentUser.uid){
       return null
     }
-    const imgSrc = (imgURL || noSignal); 
+    const imgSrc = (imgURL || noSignal);
     const plist = (
               <div className="plist-modal">
               <div className="modal-header border-bottom border-info">
-                  <button className="btn-back" type="button" onClick={() => setPlaylistSelect(false)}>←</button>
+                  <button className="btn-back" type="button" title="Back to collection" onClick={() => setPlaylistSelect(false)}>←</button>
               </div>
       <Plist message={message} imgSrc={imgSrc} getSongData={getSongData}/>
                 </div>
     )
     return (
       <>
-      <div className="p-card btn-plist-select" onClick={() => setPlaylistSelect(true)}>
+      <div className="p-card btn-plist-select" title="Open playlist" onClick={() => setPlaylistSelect(true)}>
         <img className="rounded-top" src={imgSrc} alt={text}/>
-        <div class="card-body">
-          <h5 class="p-title">{text}</h5>
+        <div className="card-body">
+          <h5 className="p-title">{text}</h5>
         </div>
       </div>
       {playlistSelect && plist}

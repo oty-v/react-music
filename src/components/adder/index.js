@@ -24,41 +24,42 @@ function Adder({modalTogle, uid, messagesRef}) {
             messagesRef.doc(docRef.id).update({ imgURL: downloadURL });
           });
         });
-      }
+      };
+      modalTogle();
     })
   }
 
 
   return (
-    <div class="adder-modal">
-        <div class="modal-dialog">
-            <div class="modal-content modal-dark">
-            <div class="modal-header">
-                <h5 class="modal-title">Add Playlist</h5>
+    <div className="adder-modal">
+        <div className="modal-dialog">
+            <div className="modal-content modal-dark">
+            <div className="modal-header">
+                <h5 className="modal-title">Add Playlist</h5>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
             <form onSubmit={sendMessage}>
-                <div class="form-group">
+                <div className="form-group">
                     <label for="exampleFormControlFile1">Playlist Image</label>
-                    <input 
-                      ref={onImg} 
-                      type="file" 
-                      class="form-control-file" 
+                    <input
+                      ref={onImg}
+                      type="file"
+                      className="form-control-file"
                     />
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                     <label for="formGroupExampleInput">Playlist Title</label>
-                    <input 
-                      value={formValue} 
-                      onChange={(e)=>setFormValue(e.target.value)} 
-                      type="text" 
-                      class="form-control" 
+                    <input
+                      value={formValue}
+                      onChange={(e)=>setFormValue(e.target.value)}
+                      type="text"
+                      className="form-control"
                       placeholder="Enter the title"
                     />
                 </div>
-                <div class="modal-footer">
-                  <button type="submit" disabled={!formValue} class="btn btn-outline-info">Save changes</button>
-                  <button type="button" class="btn btn-outline-light" data-dismiss="modal"  onClick={modalTogle}>Close</button>
+                <div className="modal-footer">
+                  <button type="submit" disabled={!formValue} className="btn btn-outline-info">Save changes</button>
+                  <button type="button" className="btn btn-outline-light" data-dismiss="modal"  onClick={modalTogle}>Close</button>
                 </div>
           </form></div>
           </div>
