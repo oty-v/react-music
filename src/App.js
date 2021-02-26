@@ -14,12 +14,12 @@ import ReactPlayer from "react-jinke-music-player";
 import "react-jinke-music-player/assets/index.css";
 
 firebase.initializeApp({
-  apiKey: "AIzaSyC9EFvHjxx-setkSTCxI1u6eWPwFsNsfGE",
-  authDomain: "isky-unity-music.firebaseapp.com",
-  projectId: "isky-unity-music",
-  storageBucket: "isky-unity-music.appspot.com",
-  messagingSenderId: "976107155751",
-  appId: "1:976107155751:web:4ff6c77a991f8a4643f902",
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: "",
 });
 
 const auth = firebase.auth();
@@ -41,7 +41,7 @@ function App() {
     try {
       for (const i of songs) {
         const songUrl = await axios(
-          `https://express-music-api.herokuapp.com/youtube?URL=${i.id}`
+          `https://...com/youtube?URL=${i.id}`
         );
         if (!songUrl.data) {
           alert(`Video "${i.title}" is blocked on YouTube and will not play!`);

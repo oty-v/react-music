@@ -38,7 +38,7 @@ function Playlist({ message, imgSrc, getSongData }) {
     } else if (formValue.includes("spotify")) {
       if (formValue.includes("track")) {
         const urlData = await axios(
-          `https://express-music-api.herokuapp.com/spotify/track?URL=${formValue}`
+          `https://...com/spotify/track?URL=${formValue}`
         );
         const data = await getSearchVideo(
           `${urlData.data.title} - ${urlData.data.artist}`
@@ -47,7 +47,7 @@ function Playlist({ message, imgSrc, getSongData }) {
         setFormValue("");
       } else if (formValue.includes("playlist")) {
         const urlData = await axios(
-          `https://express-music-api.herokuapp.com/spotify/playlist?URL=${formValue}`
+          `https://...com/spotify/playlist?URL=${formValue}`
         );
         for (const i of urlData.data) {
           const data = await getSearchVideo(`${i.artists[0].name} ${i.name}`);

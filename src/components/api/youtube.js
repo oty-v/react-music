@@ -1,6 +1,6 @@
 import YouTube from "simple-youtube-api";
 
-const API_KEY = "AIzaSyDNptt6BUIQiO5IcVTolWSXnuHXFzB9G3Q";
+const API_KEY = "";
 
 export const getPlaylistData = async (props) => {
   const youtube = new YouTube(API_KEY);
